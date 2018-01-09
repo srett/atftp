@@ -63,7 +63,7 @@ extern int tftp_cancel;
  * If mode = 0, count missed packet from block 0. Else, start after first
  * received block.
  */
-int tftp_mtftp_missed_packet(int file_bitmap[], int last_block, int mode)
+int tftp_mtftp_missed_packet(unsigned int file_bitmap[], int last_block, int mode)
 {
      int missed_block = 0;
      int block_number = 0;
