@@ -145,13 +145,15 @@ int tftpd_list_find_multicast_server_and_add(struct thread_data **thread,
      char options[MAXLEN];
      char string[MAXLEN];
      char *index;
-     int len;
+     size_t len;
 
      *thread = NULL;
 
      opt_request_to_string(tftp_options, options, MAXLEN);
      index = strstr(options, "multicast");
-     len = (int)index - (int)options;
+     if (index == NULL)
+          return 0;
+     len = (size_t)index - (size_t)options;
 
      /* lock the whole list before walking it */
      pthread_mutex_lock(&thread_list_mutex);
