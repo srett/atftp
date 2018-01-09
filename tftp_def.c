@@ -32,7 +32,7 @@
  */
 
 // FIXME: is there a way to use TIMEOUT and SEGSIZE here?
-struct tftp_opt tftp_default_options[OPT_NUMBER] = {
+struct tftp_opt tftp_default_options[OPT_NUMBER+1] = {
      { "filename", "", 0, 1},   /* file to transfer */
      { "mode", "octet", 0, 1},  /* mode for transfer */
      { "tsize", "0", 0, 1 },    /* RFC1350 options. See RFC2347, */
@@ -91,7 +91,7 @@ int timeval_diff(struct timeval *res, struct timeval *t1, struct timeval *t0)
                res->tv_usec -= 1000000;
                return -1;
           }
-          else if (res->tv_usec <= 0);
+          else
           {
                return -1;
           }
