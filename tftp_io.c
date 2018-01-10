@@ -204,11 +204,6 @@ int tftp_send_data(int socket, struct sockaddr_storage *sa, short block_number,
 /*
  * Wait for a packet. This function can listen on 2 sockets. This is
  * needed by the multicast tftp client.
- * We terminate the payload with a null char, as the data buffer is
- * in some cases passed through the opt_parse_* functions to argz_next,
- * which scans for the next null char in the given buffer without
- * checking for buffer overflows. We could fix the shipped argz sources,
- * but that wouldn't fix the problem when using the libc version.
  */
 int tftp_get_packet(int sock1, int sock2, int *sock, struct sockaddr_storage *sa,
                     struct sockaddr_storage *sa_from, struct sockaddr_storage *sa_to,
@@ -317,11 +312,6 @@ int tftp_get_packet(int sock1, int sock2, int *sock, struct sockaddr_storage *sa
                }
           }
 
-          /* null terminate */
-          if (*size > result)
-               data[result] = '\0';
-          else
-               data[result-1] = '\0';
           /* return the size to the caller */
           *size = result;
 
