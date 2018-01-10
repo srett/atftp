@@ -1,3 +1,29 @@
+This is a fork of what seems to be the latest official atftp code
+base on sourceforce (https://sourceforge.net/p/atftp/).
+
+As of now I don't plan on extending atftp but just fix bugs, due
+to time constraints. The one exception is the rollover patch
+to support large file transfers, taken from a PR to opsi-atftp
+(https://github.com/opsi-org/opsi-atftpd/pull/1)
+
+Feel free to open issues for any problems you encounter. Since
+I'm not at all familiar with the code base there's some chance
+something broke though my patching, although the test.sh from
+the test directory still reports that all is well.
+
+The motivation for this repo was that we suddenly encountered
+frequent crashes under high load which were easily reproduced
+and tracked down to a race condition.
+Researching revealed that there seems to be no active maintainer
+for atftp, nor did I find any forks that try to address any
+of the bugs that have been reported on the original sourceforge
+project page.
+Regarding the state of atftp we're currently considering moving
+away from it. Until we've decided on a replacement, this is the
+version that's running in production.
+
+Original unmodified README content follows:
+
     Jean-Pierre Lefebvre <helix@step.polymtl.ca>
     August 20th, 2000
     -----------------
